@@ -1,0 +1,108 @@
+package demos.nehe.lesson04;
+
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.GLAutoDrawable;
+import com.jogamp.opengl.GLEventListener;
+import com.jogamp.opengl.glu.GLU;
+
+/*
+ * Lesson04.java
+ *
+ * Created on July 14, 2003, 12:53 PM
+ */
+
+/** Port of the NeHe OpenGL Tutorial (Lesson 4)
+ * to Java using the Jogl interface to OpenGL.  Jogl can be obtained
+ * at http://jogl.dev.java.net/
+ *
+ * @author Kevin Duling (jattier@hotmail.com)
+ */
+class Renderer implements GLEventListener {
+    private float rquad = 0.0f;
+    private float rtri = 0.0f;
+    private GLU glu = new GLU();
+
+    /** Called by the drawable to initiate OpenGL rendering by the client.
+     * After all GLEventListeners have been notified of a display event, the
+     * drawable will swap its buffers if necessary.
+     * @param drawable The GLAutoDrawable object.
+     */
+
+    public void display(GLAutoDrawable drawable) {
+    	GL2 gl = drawable.getGL().getGL2();
+        gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT);
+        gl.glLoadIdentity();
+        gl.glTranslatef(-1.5f, 0.0f, -6.0f);
+        gl.glRotatef(rtri, 0.0f, 1.0f, 0.0f);
+        gl.glBegin(GL2.GL_TRIANGLES);		    // Drawing Using Triangles
+        gl.glColor3f(1.0f, 0.0f, 0.0f);   // Set the current drawing color to red
+        gl.glVertex3f(0.0f, 1.0f, 0.0f);	// Top
+        gl.glColor3f(0.0f, 1.0f, 0.0f);   // Set the current drawing color to green
+        gl.glVertex3f(-1.0f, -1.0f, 0.0f);	// Bottom Left
+        gl.glColor3f(0.0f, 0.0f, 1.0f);   // Set the current drawing color to blue
+        gl.glVertex3f(1.0f, -1.0f, 0.0f);	// Bottom Right
+        gl.glEnd();				// Finished Drawing The Triangle
+        gl.glLoadIdentity();
+        gl.glTranslatef(1.5f, 0.0f, -6.0f);
+        gl.glRotatef(rquad, 1.0f, 0.0f, 0.0f);
+        gl.glBegin(GL2.GL_QUADS);           	// Draw A Quad
+        gl.glColor3f(0.5f, 0.5f, 1.0f);   // Set the current drawing color to light blue
+        gl.glVertex3f(-1.0f, 1.0f, 0.0f);	// Top Left
+        gl.glVertex3f(1.0f, 1.0f, 0.0f);	// Top Right
+        gl.glVertex3f(1.0f, -1.0f, 0.0f);	// Bottom Right
+        gl.glVertex3f(-1.0f, -1.0f, 0.0f);	// Bottom Left
+        gl.glEnd();				// Done Drawing The Quad
+        gl.glFlush();
+        rtri += 0.2f;
+        rquad += 0.15f;
+    }
+
+
+    /** Called by the drawable immediately after the OpenGL context is
+     * initialized for the first time. Can be used to perform one-time OpenGL
+     * initialization such as setup of lights and display lists.
+     * @param drawable The GLAutoDrawable object.
+     */
+    public void init(GLAutoDrawable drawable) {
+    	GL2 gl = drawable.getGL().getGL2();
+        gl.glShadeModel(GL2.GL_SMOOTH);              // Enable Smooth Shading
+        gl.glClearColor(0.0f, 0.0f, 0.0f, 0.5f);    // Black Background
+        gl.glClearDepth(1.0f);                      // Depth Buffer Setup
+        gl.glEnable(GL2.GL_DEPTH_TEST);							// Enables Depth Testing
+        gl.glDepthFunc(GL2.GL_LEQUAL);								// The Type Of Depth Testing To Do
+        gl.glHint(GL2.GL_PERSPECTIVE_CORRECTION_HINT, GL2.GL_NICEST);	// Really Nice Perspective Calculations
+    }
+
+
+    /** Called by the drawable during the first repaint after the component has
+     * been resized. The client can update the viewport and view volume of the
+     * window appropriately, for example by a call to
+     * GL2.glViewport(int, int, int, int); note that for convenience the component
+     * has already called GL2.glViewport(int, int, int, int)(x, y, width, height)
+     * when this method is called, so the client may not have to do anything in
+     * this method.
+     * @param drawable The GLAutoDrawable object.
+     * @param x The X Coordinate of the viewport rectangle.
+     * @param y The Y coordinate of the viewport rectanble.
+     * @param width The new width of the window.
+     * @param height The new height of the window.
+     */
+    public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
+    	GL2 gl = drawable.getGL().getGL2();
+
+        if (height <= 0) // avoid a divide by zero error!
+            height = 1;
+        final float h = (float) width / (float) height;
+// gl.glViewport(0, 0, width, height);  // don't need to call this according to jogl docs
+        gl.glMatrixMode(GL2.GL_PROJECTION);
+        gl.glLoadIdentity();
+        glu.gluPerspective(45.0f, h, 1.0, 20.0);
+        gl.glMatrixMode(GL2.GL_MODELVIEW);
+        gl.glLoadIdentity();
+    }
+
+
+	@Override
+	public void dispose(GLAutoDrawable drawable) {
+	}
+}
