@@ -1,38 +1,46 @@
 package demos.nehe.lesson48;
 
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.events.MouseMoveListener;
+import org.eclipse.swt.graphics.Point;
+
 import demos.common.GLDisplay;
 
-import javax.swing.*;
-import javax.swing.event.MouseInputAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+class InputHandler implements MouseListener, MouseMoveListener {
+	private Renderer renderer;
+	private boolean right;
 
-class InputHandler extends MouseInputAdapter {
-    private Renderer renderer;
+	public InputHandler(Renderer renderer, GLDisplay glDisplay) {
+		this.renderer = renderer;
+		glDisplay.registerMouseEventForHelp(SWT.MouseDoubleClick, SWT.BUTTON1, "Toggle display mode");
+	}
 
-    public InputHandler(Renderer renderer, GLDisplay glDisplay) {
-        this.renderer = renderer;
-        glDisplay.registerMouseEventForHelp(
-                MouseEvent.MOUSE_CLICKED, MouseEvent.BUTTON1_DOWN_MASK,
-                "Toggle display mode"
-        );
-    }
+	@Override
+	public void mouseMove(MouseEvent e) {
+		if (right) {
+			renderer.drag(new Point(e.x, e.y));
+		}
+	}
 
-    public void mouseClicked(MouseEvent e) {
-        if (SwingUtilities.isRightMouseButton(e)) {
-            renderer.reset();
-        }
-    }
+	@Override
+	public void mouseDoubleClick(MouseEvent e) {
+		if (e.button == 1) {
+			renderer.reset();
+		}
+	}
 
-    public void mousePressed(MouseEvent mouseEvent) {
-        if (SwingUtilities.isLeftMouseButton(mouseEvent)) {
-            renderer.startDrag(mouseEvent.getPoint());
-        }
-    }
+	@Override
+	public void mouseDown(MouseEvent e) {
+		if (e.button == 1) {
+			right = true;
+			renderer.startDrag(new Point(e.x, e.y));
+		}
+	}
 
-    public void mouseDragged(MouseEvent mouseEvent) {
-        if (SwingUtilities.isLeftMouseButton(mouseEvent)) {
-            renderer.drag(mouseEvent.getPoint());
-        }
-    }
+	@Override
+	public void mouseUp(MouseEvent e) {
+		right = false;
+	}
 }

@@ -12,7 +12,8 @@ import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.glu.GLU;
 
 /**
- * Port of the NeHe OpenGL Tutorial (Lesson 5) to Java using the Jogl interface to OpenGL. Jogl can be obtained at http://jogl.dev.java.net/
+ * Port of the NeHe OpenGL Tutorial (Lesson 5) to Java using the Jogl interface to OpenGL. Jogl can be obtained at
+ * http://jogl.dev.java.net/
  * 
  * @author Kevin Duling (jattier@hotmail.com)
  */
@@ -23,8 +24,8 @@ class Renderer implements GLEventListener {
 	private GLU glu = new GLU();
 
 	/**
-	 * Called by the drawable to initiate OpenGL rendering by the client. After all GLEventListeners have been notified of a display event, the drawable will
-	 * swap its buffers if necessary.
+	 * Called by the drawable to initiate OpenGL rendering by the client. After all GLEventListeners have been notified
+	 * of a display event, the drawable will swap its buffers if necessary.
 	 * 
 	 * @param drawable
 	 *            The GLAutoDrawable object.
@@ -107,8 +108,8 @@ class Renderer implements GLEventListener {
 	}
 
 	/**
-	 * Called by the drawable immediately after the OpenGL context is initialized for the first time. Can be used to perform one-time OpenGL initialization such
-	 * as setup of lights and display lists.
+	 * Called by the drawable immediately after the OpenGL context is initialized for the first time. Can be used to
+	 * perform one-time OpenGL initialization such as setup of lights and display lists.
 	 * 
 	 * @param drawable
 	 *            The GLAutoDrawable object.
@@ -124,9 +125,10 @@ class Renderer implements GLEventListener {
 	}
 
 	/**
-	 * Called by the drawable during the first repaint after the component has been resized. The client can update the viewport and view volume of the window
-	 * appropriately, for example by a call to GL2.glViewport(int, int, int, int); note that for convenience the component has already called GL2.glViewport(int,
-	 * int, int, int)(x, y, width, height) when this method is called, so the client may not have to do anything in this method.
+	 * Called by the drawable during the first repaint after the component has been resized. The client can update the
+	 * viewport and view volume of the window appropriately, for example by a call to GL2.glViewport(int, int, int,
+	 * int); note that for convenience the component has already called GL2.glViewport(int, int, int, int)(x, y, width,
+	 * height) when this method is called, so the client may not have to do anything in this method.
 	 * 
 	 * @param drawable
 	 *            The GLAutoDrawable object.

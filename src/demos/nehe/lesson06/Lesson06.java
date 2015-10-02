@@ -8,8 +8,8 @@ import demos.common.GLDisplay;
  * @author Kevin J. Duling
  */
 public class Lesson06 {
-    public static void main(String[] args) {
-        Display display = Display.getDefault();
+	public static void main(String[] args) {
+		Display display = Display.getDefault();
 		GLDisplay neheGLDisplay = GLDisplay.createGLDisplay(display, "Lesson 06: Texture mapping");
 		neheGLDisplay.addGLEventListener(new Renderer());
 		neheGLDisplay.start();
@@ -18,5 +18,5 @@ public class Lesson06 {
 				display.sleep();
 			}
 		}
-    }
+	}
 }

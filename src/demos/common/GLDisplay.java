@@ -126,9 +126,11 @@ public class GLDisplay {
 	 * @param requestedRefreshRate
 	 * @return
 	 */
-	// private DisplayMode findDisplayMode(DisplayMode[] displayModes, int requestedWidth, int requestedHeight, int requestedDepth, int requestedRefreshRate) {
+	// private DisplayMode findDisplayMode(DisplayMode[] displayModes, int requestedWidth, int requestedHeight, int
+	// requestedDepth, int requestedRefreshRate) {
 	// // Try to find an exact match
-	// DisplayMode displayMode = findDisplayModeInternal(displayModes, requestedWidth, requestedHeight, requestedDepth, requestedRefreshRate);
+	// DisplayMode displayMode = findDisplayModeInternal(displayModes, requestedWidth, requestedHeight, requestedDepth,
+	// requestedRefreshRate);
 	//
 	// // Try again, ignoring the requested bit depth
 	// if (displayMode == null)
@@ -153,14 +155,17 @@ public class GLDisplay {
 	 * @param requestedRefreshRate
 	 * @return
 	 */
-	// private DisplayMode findDisplayModeInternal(DisplayMode[] displayModes, int requestedWidth, int requestedHeight, int requestedDepth, int
+	// private DisplayMode findDisplayModeInternal(DisplayMode[] displayModes, int requestedWidth, int requestedHeight,
+	// int requestedDepth, int
 	// requestedRefreshRate) {
 	// DisplayMode displayModeToUse = null;
 	// for (int i = 0; i < displayModes.length; i++) {
 	// DisplayMode displayMode = displayModes[i];
-	// if ((requestedWidth == DONT_CARE || displayMode.getWidth() == requestedWidth) && (requestedHeight == DONT_CARE || displayMode.getHeight() ==
+	// if ((requestedWidth == DONT_CARE || displayMode.getWidth() == requestedWidth) && (requestedHeight == DONT_CARE ||
+	// displayMode.getHeight() ==
 	// requestedHeight)
-	// && (requestedHeight == DONT_CARE || displayMode.getRefreshRate() == requestedRefreshRate) && (requestedDepth == DONT_CARE || displayMode.getBitDepth() ==
+	// && (requestedHeight == DONT_CARE || displayMode.getRefreshRate() == requestedRefreshRate) && (requestedDepth ==
+	// DONT_CARE || displayMode.getBitDepth() ==
 	// requestedDepth))
 	// displayModeToUse = displayMode;
 	// }

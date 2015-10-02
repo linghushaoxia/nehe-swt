@@ -1,6 +1,5 @@
 package demos.nehe.lesson07;
 
-
 import org.eclipse.jface.bindings.keys.KeyStroke;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyAdapter;

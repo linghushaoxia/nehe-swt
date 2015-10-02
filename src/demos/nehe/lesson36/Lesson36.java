@@ -6,10 +6,10 @@ import demos.common.GLDisplay;
  * @author Pepijn Van Eeckhoudt
  */
 public class Lesson36 {
-    public static void main(String[] args) {
-        GLDisplay neheGLDisplay = GLDisplay.createGLDisplay("Lesson 36: Radial blur");
-        Renderer renderer = new Renderer(neheGLDisplay);
-        neheGLDisplay.addGLEventListener(renderer);
-        neheGLDisplay.start();
-    }
+	public static void main(String[] args) {
+		GLDisplay neheGLDisplay = GLDisplay.createGLDisplay("Lesson 36: Radial blur");
+		Renderer renderer = new Renderer(neheGLDisplay);
+		neheGLDisplay.addGLEventListener(renderer);
+		neheGLDisplay.start();
+	}
 }
